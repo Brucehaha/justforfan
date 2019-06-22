@@ -1,0 +1,44 @@
+Family Address:
+    AF.INET Ipv4
+    AF.INET6 ipv6
+    AF.UNIX local
+Socket Protocal type:
+socket.SOCK_STREAM  tcp/ip
+sock.SOCK_DGRAM  for UDP
+
+Server:
+server = socket.socket(AF.INET, sock.SOCK_STREAM)
+server.bind(localhost, 9999)
+server.listen()
+while True:  # only one at a time
+    oonn, addr = server.accept() # stucked, conn is the instance ip of the client
+
+    while True:
+        print("new conn",addr)
+        data = conn.recv(1024)  #8192 8k #recv default is stucked
+        if not data:
+            break
+        print(data)
+        conn.send(data.upper())
+
+
+client
+
+client = socket.socket()
+client.connect(serverip, 9999)
+client.send(data)
+client.send(data)
+client.recv(1024)
+
+#########socketservert############
+处理链接：
+BaseServer
+TCPServer
+UDPServer
+UnixSteamServer
+UnixDatagramServer
+
+Request Class: 处理通信：
+BaseRequestHandler
+SteamRequestHandler
+DatagramRequestHandler
